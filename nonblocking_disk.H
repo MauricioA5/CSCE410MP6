@@ -44,7 +44,7 @@ public:
 protected:
    void wait_while_busy() override;
       // Improved waiting behavior
-      // Presumably yields the thready if the disk is found to be busy
+      // Presumably yields the thread if the disk is found to be busy
 };
 
 
