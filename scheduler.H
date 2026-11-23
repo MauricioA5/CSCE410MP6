@@ -43,7 +43,7 @@
     to not penalize the next thread.
  
     (Note that this qualifies as programming at about the level of a baboon.
-     Much better woudl be to have the abstract class 'Scheduler' implement 
+     Much better would be to have the abstract class 'Scheduler' implement 
      the basic scheduling MECHANISMS and provide abstract funtions to define
      the queue management POLICIES in derived classes, 
      such as 'FIFOScheduler'.)
@@ -56,7 +56,16 @@
 
 class Scheduler {
 
-  /* The scheduler may need private members... */
+   /* Ready Queue members*/
+   struct Node {
+      Thread * thread;
+      Node * next;
+   };
+   Node * ready_head;
+   Node * ready_tail;
+   Thread * idle;
+   Thread * finished;
+   void collect_finished();
   
 public:
 
@@ -88,6 +97,9 @@ public:
    /* Remove the given thread from the scheduler in preparation for destruction
       of the thread. 
       Graciously handle the case where the thread wants to terminate itself.*/
+
+   static void terminate_current();
+   /* Entry from thread_shutdown when a thread function returns. */
   
 };
 	

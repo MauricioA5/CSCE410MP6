@@ -19,7 +19,7 @@
 
 /* -- COMMENT/UNCOMMENT THE FOLLOWING LINE TO EXCLUDE/INCLUDE SCHEDULER CODE */
 
-//#define _USES_SCHEDULER_
+#define _USES_SCHEDULER_
 /* This macro is defined when we want to force the code below to use
    a scheduler.
    Otherwise, no scheduler is used, and the threads pass control to each
@@ -270,7 +270,7 @@ int main()
 
 	/* -- DISK DEVICE -- */
 
-	System::DISK = new SimpleDisk(System::DISK_SIZE); // Replace this with commented code below when you are ready!
+	System::DISK = new NonBlockingDisk(System::DISK_SIZE);
 
 	// #define _USES_SCHEDULER_
 	// // The NonBlockingDisk uses a scheduler.

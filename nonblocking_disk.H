@@ -41,7 +41,12 @@ public:
       NOTE: We are passing the _size argument out of laziness. 
       In a real system, we would infer this information from the 
       disk controller. */
-
+protected:
+   void wait_while_busy() override;
+      // Improved waiting behavior
+      // Presumably yields the thready if the disk is found to be busy
 };
+
+
 
 #endif
