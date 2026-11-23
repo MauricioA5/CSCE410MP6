@@ -24,7 +24,6 @@
 #include "nonblocking_disk.H"
 /* Added this to have access to the system scheduler*/
 #include "system.H"
-
 /*--------------------------------------------------------------------------*/
 /* CONSTRUCTOR */
 /*--------------------------------------------------------------------------*/
@@ -41,8 +40,8 @@ void NonBlockingDisk::wait_while_busy() {
     /*Give up the CPU*/
     Console::puts("[disk debug] Disk busy; thread yielding.\n");
     System::SCHEDULER->yield();
-    Console::puts("[disk debug] Disk thread resumed.\n");
+    Console::puts("Disk thread resumed.\n");
   }
-  Console::puts("[disk debug] Disk ready; continuing.\n");
+  Console::puts("Disk ready; continuing.\n");
 }
 

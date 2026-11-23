@@ -149,32 +149,6 @@ void fun2()
 	Console::puts("FUN 2 INVOKED!\n");
 
 	unsigned char buf[DISK_BLOCK_SIZE];
-	/* -- TEMPORARY READ-BACK TEST: remove this block to restore fun2. -- */
-	/* Use heap storage: this thread has only a 1024-byte stack. */
-	unsigned char* readback = new unsigned char[DISK_BLOCK_SIZE];
-	const unsigned long test_block = 10; // Outside the original loop's blocks 0-9.
-	for (int i = 0; i < DISK_BLOCK_SIZE; i++) {
-		buf[i] = (unsigned char)(i % 256);
-		readback[i] = (unsigned char)(buf[i] ^ 0xFF);
-	}
-	Console::puts("[disk test] Writing and reading back block 10.\n");
-	System::DISK->write(test_block, buf);
-	System::DISK->read(test_block, readback);
-	bool matches = true;
-	for (int i = 0; i < DISK_BLOCK_SIZE; i++) {
-		if (readback[i] != buf[i]) {
-			Console::puts("[disk test] FAIL at byte "); Console::puti(i);
-			Console::puts("; expected "); Console::putui((unsigned int)buf[i]);
-			Console::puts("; got "); Console::putui((unsigned int)readback[i]);
-			Console::puts("\n");
-			matches = false;
-			break;
-		}
-	}
-	if (matches) Console::puts("[disk test] PASS: all 512 bytes match.\n");
-	delete[] readback;
-	/* -- END TEMPORARY READ-BACK TEST -- */
-
 	int  read_block = 1;
 	int  write_block = 0;
 
