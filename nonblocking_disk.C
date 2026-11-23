@@ -38,7 +38,7 @@ void NonBlockingDisk::wait_while_busy() {
     /*Put the current thread in the scheduler’s ready queue*/
     System::SCHEDULER->resume(Thread::CurrentThread());
     /*Give up the CPU*/
-    Console::puts("[disk debug] Disk busy; thread yielding.\n");
+    Console::puts("Disk busy; thread yielding.\n");
     System::SCHEDULER->yield();
     Console::puts("Disk thread resumed.\n");
   }
